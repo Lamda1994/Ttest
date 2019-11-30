@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './components/layout/Header'
 import NavBar from './components/layout/NavBar'
 import ListTask from './components/task/ListTasks'
+import NewTask from './components/task/NewTask'
+import UpdateTask from './components/task/UpdateTask'
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
               <Switch>
                   <Route exact path="/" component={ListTask}></Route>
                   <Route exact path="/task" component={ListTask}></Route>
+                  <Route exact path="/task/new" component={NewTask}></Route>
+                  <Route exact path="/task/edit/:id" component={UpdateTask}></Route>
                   <Route exact path="/users" component={ListTask}></Route>
               </Switch>
           </main>

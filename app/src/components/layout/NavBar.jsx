@@ -5,8 +5,8 @@ const NavBar = ()=>(
         <h2>Administración</h2>
 
         <nav className="navegacion">
-            <Link to={"/tasks"} className="clientes">Tasks</Link>
-            <Link to={"/users"} className="productos">Users</Link>
+            <Link to={"/task"} className="clientes">Tasks</Link>
+            <Link to={"/user"} className="productos">Users</Link>
             <Link to={"/"} className="pedidos">Sing out</Link>
         </nav>
     </aside>

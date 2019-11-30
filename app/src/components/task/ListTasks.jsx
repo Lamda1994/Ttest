@@ -1,22 +1,49 @@
-import React, {useEffect,useState} from 'react'
-import Axios from '../../config';
+import React, {useEffect,useState,Fragment} from 'react'
+import {Link} from 'react-router-dom';
+import Axios from '../../config'
+import Task from './Task'
 
 
 const ListTask =()=>{
 
-    const {task, saveTask} = useState([])
+    const [tasks, saveTask] = useState([])
 
     const apiQuery = async()=>{
-        const taks = await Axios.get("/api/task")
+        const task = await Axios.get("/api/task")
         saveTask(task.data)
-        console.log(taks.data)
     }
 
     useEffect(()=>{
         apiQuery()
     },[])
     return(
-        <h1>Hola mundo</h1>
+      <Fragment>
+        <h2>Tasks List</h2>
+        <Link to={"/task/new"} className="btn btn-verde nvo-cliente"> <i className="fas fa-plus-circle"></i>
+            New Task
+        </Link>
+        <table>
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>User</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              tasks.map(task=>(
+                <Task
+                  key={task._id}
+                  task={task}
+                />
+              ))
+            }
+          </tbody>
+        </table>
+      </Fragment>
     )
 }
 

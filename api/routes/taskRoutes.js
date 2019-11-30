@@ -8,7 +8,7 @@ router.get('/:id', controllerTask.task)
 
 router.post('/', controllerTask.newTask)
 
-router.put('/:id', )
+router.put('/:id', controllerTask.updateTask)
 
 router.put('/assign/:id', controllerTask.assignTask)
 
