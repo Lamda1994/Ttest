@@ -3,11 +3,11 @@ const Task = require('../models/task')
 exports.lisTask = async (req, res, next)=>{
     try{
         const task = await Task.find()
-        res.json(task)    
+        res.json(task)
     } catch (err) {
         console.log(err)
         next()
-    }    
+    }
 }
 
 exports.newTask =  async (req,res, next)=>{
@@ -19,17 +19,17 @@ exports.newTask =  async (req,res, next)=>{
     } catch (err) {
         console.log(err)
         next()
-    }   
+    }
 }
 
 exports.task = async (req, res, next)=>{
     try{
         const task = await Task.findById(req.params.id)
-        res.json(task)    
+        res.json(task)
     } catch (err) {
         console.log(err)
         next()
-    }    
+    }
 }
 
 exports.updateTask = async (req,res, next)=>{

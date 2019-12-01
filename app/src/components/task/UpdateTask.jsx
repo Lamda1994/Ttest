@@ -22,7 +22,11 @@ const UpdateTask =(props)=>{
       e.preventDefault()
       Axios.put(`/api/task/${id}`,tasks)
            .then(res=>{
-             console.log(res)
+             Swal.fire(
+               'Task Updated!',
+               'The task was updated successfully!',
+               'success'
+             )
              props.history.push("/task")
            })
   }

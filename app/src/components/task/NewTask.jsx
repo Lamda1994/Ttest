@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import {withRouter} from 'react-router-dom'
 import Axios from '../../config'
 import Swal from 'sweetalert2'
@@ -7,8 +7,20 @@ const NewTask =({history})=>{
 
   const [task, saveTask] = useState({
     title:'',
-    description:''
+    description:'',
+    user:''
   })
+  const [users, saveUser] = useState([])
+
+  const apiQuery = async()=>{
+      const user = await Axios.get("/api/user")
+      console.log(user.data)
+      saveUser(user.data)
+  }
+
+  useEffect(()=>{
+      apiQuery()
+  },[])
 
   const loadState = e=>{
     saveTask({
@@ -19,18 +31,19 @@ const NewTask =({history})=>{
   }
 
   const validateForm = ()=>{
-    const {title, description} = task
-    let validate = !title.length || !description.length
+    const {title, description, user} = task
+    let validate = !title.length || !description.length || !user.length
     return validate
   }
 
   const addTask = e=>{
     e.preventDefault()
+    //console.log(task)
     Axios.post('/api/task',task)
     .then(res =>{
       Swal.fire(
-        'Good job!',
-        'You clicked the button!',
+        'Task Saved!',
+        'The new task was saved successfully!',
         'success'
       )
 
@@ -46,7 +59,17 @@ const NewTask =({history})=>{
               <label>Title:</label>
               <input type="text" placeholder="Insert a title for the task" name="title" onChange={loadState}/>
           </div>
-
+          <div className="campo">
+          <label>User:</label>
+            <select name="user" onChange={loadState} onLoad={loadState}>
+                <option value="unassign">Select...</option>
+                {
+                  users.map(user=>(
+                    <option key={user._id} value={user._id}>{user.name}</option>
+                  ))
+                }
+            </select>
+          </div>
           <div className="campo">
               <label>Description:</label>
               <textarea cols="90" rows="20"  placeholder="Insert a short description of the task" name="description" onChange={loadState}></textarea>

@@ -15,12 +15,13 @@ const ListTask =()=>{
 
     useEffect(()=>{
         apiQuery()
-    },[])
+    },[tasks])
+
     return(
       <Fragment>
         <h2>Tasks List</h2>
-        <Link to={"/task/new"} className="btn btn-verde nvo-cliente"> <i className="fas fa-plus-circle"></i>
-            New Task
+        <Link to={"/task/new"}>
+          <i className="fa fa-plus-circle fa-2x"></i>
         </Link>
         <table>
           <thead>
