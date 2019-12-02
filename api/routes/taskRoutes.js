@@ -13,6 +13,8 @@ router.get('/', controllerTask.lisTask)
 
 router.get('/:id', controllerTask.task)
 
+router.get('/search/:name', controllerTask.search)
+
 router.post('/', controllerTask.newTask)
 
 router.put('/:id', controllerTask.updateTask)

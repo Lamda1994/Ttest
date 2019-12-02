@@ -36,6 +36,15 @@ exports.task = async (req, res, next)=>{
     }
 }
 
+exports.search = async (req, res, next)=>{
+    try{
+        const task = await Task.findOne({name:req.params.name})
+        res.json(task)
+    } catch (err) {
+        res.status(500).json({status: 'Task searching error: '+err})
+    }
+}
+
 //Request to update a task.
 exports.updateTask = async (req,res, next)=>{
     try {

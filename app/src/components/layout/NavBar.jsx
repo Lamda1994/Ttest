@@ -19,11 +19,11 @@ const NavBar = (props)=>{
 
   return(
     <aside className="sidebar col-3">
-        <h2>Administración</h2>
+        <h2>Administration</h2>
 
         <nav className="navegacion">
-            <Link to={"/task"} className="clientes">Tasks</Link>
-            <Link to={"/user"} className="productos">Users</Link>
+            <Link to={"/task"} className="productos">Tasks</Link>
+            <Link to={"/user"} className="clientes">Users</Link>
             <a onClick={singOut} className="pedidos" style={{cursor:'pointer'}}>Sing out</a>
         </nav>
     </aside>

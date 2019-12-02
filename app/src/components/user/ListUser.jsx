@@ -51,12 +51,14 @@ const ListUser =(props)=>{
           </thead>
           <tbody>
             {
-              users.map(user=>(
+             users.length ? ( users.map(user=>(
                 <User
                   key={user._id}
                   user={user}
                 />
-              ))
+              ))) : (
+                <tr><td colSpan="6">No records</td></tr>
+              )
             }
           </tbody>
         </table>

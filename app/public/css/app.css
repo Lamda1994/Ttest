@@ -182,12 +182,12 @@ h2 {
 .navegacion a.productos::before {
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900; 
-    content: "\f468";
+    content: "\f0ae";
 }
 .navegacion a.pedidos::before {
     font-family: "Font Awesome 5 Free"; 
     font-weight: 900; 
-    content: "\f02d";
+    content: "\f2f5";
 }
 
 /** Caja **/

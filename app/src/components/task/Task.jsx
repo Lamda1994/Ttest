@@ -1,9 +1,9 @@
 import React, {useEffect,useState} from 'react'
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import Swal from 'sweetalert2'
 import Axios from '../../config'
 
-const Task =({task})=>{
+const Task =({task, history})=>{
 
   const [user, saveUser] = useState([])
 
@@ -81,4 +81,4 @@ const Task =({task})=>{
   )
 }
 
-export default Task
+export default withRouter(Task)

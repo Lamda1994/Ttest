@@ -8,6 +8,7 @@ import Task from './Task'
 const ListTask =(props)=>{
 
     const [tasks, saveTask] = useState([])
+    const [list, saveList] = useState([])
     const [auth, saveAuth] = useContext(CRMContext)
 
     const apiQuery = async()=>{
@@ -52,12 +53,15 @@ const ListTask =(props)=>{
           </thead>
           <tbody>
             {
-              tasks.map(task=>(
-                <Task
-                  key={task._id}
-                  task={task}
-                />
-              ))
+                tasks.length ? (tasks.map(task=>( 
+                  <Task
+                    key={task._id}
+                    task={task}
+                  />
+                )
+              )) : (
+                <tr><td colSpan="5">No records</td></tr>
+              )
             }
           </tbody>
         </table>
