@@ -40,13 +40,13 @@ const Task =({task})=>{
       }
     })
   }
-
+  let n="Unassigned"
   return(
     <tr>
       <td>{task.title}</td>
       <td>{task.description}</td>
       <td>{task.status}</td>
-      <td>{task.assigned ?  user.name : "Unassigned"  }</td>
+      <td>{task.assigned ?  user.name :  n }</td>
       <td>
         <Link to={`/task/edit/${task._id}`} >
             <i className="fas fa-edit fa-2x"></i>

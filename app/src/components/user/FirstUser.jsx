@@ -3,14 +3,13 @@ import {withRouter} from 'react-router-dom'
 import Axios from '../../config'
 import Swal from 'sweetalert2'
 
-const NewUser =({history})=>{
+const FirstUser =({history})=>{
 
   const [user, saveUser] = useState({
     id:"",
     name:"",
     email:"",
-    password:"",
-    type:""
+    password:""
   })
 
   const loadState = e=>{
@@ -25,8 +24,7 @@ const NewUser =({history})=>{
      const {id,
             name,
             email,
-            password,
-            type} = user
+            password} = user
     let validate = !id.length || !name.length || !email.length || !password.length
     return validate
   }
@@ -40,7 +38,7 @@ const NewUser =({history})=>{
         'The new user was saved successfully!',
         'success'
       )
-      history.push('/user')
+      history.push('/')
     })
   }
 
@@ -68,14 +66,6 @@ const NewUser =({history})=>{
               <input type="password" placeholder="Insert your password" name="password" onChange={loadState}/>
           </div>
 
-          <div className="campo">
-              <label>Type:</label>
-              <select name="type" onChange={loadState}>
-                  <option value="Normal">Normal</option>
-                  <option value="Admin">Administrator</option>
-              </select>
-          </div>
-
           <div className="enviar">
                   <input type="submit" className="btn btn-azul" value="Send" disabled={validateForm()}/>
           </div>
@@ -84,4 +74,4 @@ const NewUser =({history})=>{
   )
 }
 
-export default withRouter(NewUser)
+export default withRouter(FirstUser)

@@ -1,10 +1,10 @@
 import React from 'react'
- 
+
 const Header =()=>{
-    return(
+        return(
         <header className="barra">
             <div className="contenedor">
-                <h1>CRM - Administrador de Clientes</h1>
+                <h1>TDL Task</h1>
             </div>
         </header>
     )

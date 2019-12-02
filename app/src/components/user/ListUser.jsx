@@ -1,23 +1,38 @@
-import React, {useEffect,useState,Fragment} from 'react'
-import {Link} from 'react-router-dom';
+import React, {useEffect,useState,Fragment,useContext} from 'react'
+import {Link, withRouter} from 'react-router-dom';
 import Axios from '../../config'
 import User from './User'
+import { CRMContext } from '../../context/CRMContext'
 
-
-const ListUser =()=>{
+const ListUser =(props)=>{
 
     const [users, saveUser] = useState([])
+    const [auth, saveAuth] = useContext(CRMContext)
+
 
     const apiQuery = async()=>{
-        const user = await Axios.get("/api/user")
-        console.log(user.data)
-        saveUser(user.data)
+        if (auth.token != '') {
+          try {
+            const user = await Axios.get("/api/user")
+            console.log(user.data)
+            saveUser(user.data)
+          }
+          catch (e) {
+            if(e.response.status = 500){
+              props.history.push('/')
+            }
+          }
+        }else{
+          props.history.push('/')
+        }
     }
-
     useEffect(()=>{
         apiQuery()
-    },[])
+    },[users])
 
+    if(!auth.auth){
+      props.history.push('/')
+    }
     return(
       <Fragment>
         <h2>Users List</h2>
@@ -49,4 +64,4 @@ const ListUser =()=>{
     )
 }
 
-export default ListUser
+export default withRouter(ListUser)

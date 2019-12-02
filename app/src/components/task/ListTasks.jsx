@@ -1,22 +1,39 @@
-import React, {useEffect,useState,Fragment} from 'react'
-import {Link} from 'react-router-dom';
+import React, {useEffect,useState,Fragment,useContext} from 'react'
+import {Link, withRouter} from 'react-router-dom';
+import { CRMContext } from '../../context/CRMContext'
 import Axios from '../../config'
 import Task from './Task'
 
 
-const ListTask =()=>{
+const ListTask =(props)=>{
 
     const [tasks, saveTask] = useState([])
+    const [auth, saveAuth] = useContext(CRMContext)
 
     const apiQuery = async()=>{
-        const task = await Axios.get("/api/task")
-        saveTask(task.data)
+        if (auth.token != '') {
+          try {
+            const task = await Axios.get("/api/task")
+            saveTask(task.data)
+          }
+          catch (e) {
+            if(e.response.status = 500){
+              props.history.push('/')
+            }
+          }
+        }else{
+          props.history.push('/')
+        }
     }
 
     useEffect(()=>{
         apiQuery()
     },[tasks])
 
+    if(!auth.auth){
+      props.history.push('/')
+    }
+    
     return(
       <Fragment>
         <h2>Tasks List</h2>
@@ -48,4 +65,4 @@ const ListTask =()=>{
     )
 }
 
-export default ListTask
+export default withRouter(ListTask)

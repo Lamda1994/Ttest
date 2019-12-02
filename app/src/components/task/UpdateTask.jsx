@@ -51,7 +51,7 @@ const UpdateTask =(props)=>{
 
   return(
     <Fragment>
-      <h2>New Task</h2>
+      <h2>Update Task</h2>
       <form onSubmit={updateTask}>
           <div className="campo">
               <label>Title:</label>

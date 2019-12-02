@@ -1,4 +1,5 @@
-import React, {Fragment, useState, useEffect} from 'react'
+import React, {Fragment, useState, useEffect, useContext} from 'react'
+import { CRMContext } from '../../context/CRMContext'
 import {withRouter} from 'react-router-dom'
 import Axios from '../../config'
 import Swal from 'sweetalert2'
@@ -11,11 +12,24 @@ const NewTask =({history})=>{
     user:''
   })
   const [users, saveUser] = useState([])
+  const [auth, saveAuth] = useContext(CRMContext)
 
   const apiQuery = async()=>{
-      const user = await Axios.get("/api/user")
-      console.log(user.data)
-      saveUser(user.data)
+
+      if (auth.token != '') {
+        try {
+          const user = await Axios.get("/api/user")
+          console.log(user.data)
+          saveUser(user.data)
+        }
+        catch (e) {
+          if(e.response.status = 500){
+            history.push('/')
+          }
+        }
+      }else{
+        history.push('/')
+      }
   }
 
   useEffect(()=>{
