@@ -1,7 +1,14 @@
+//All routes for interaction with task data collection are hosted here.
+
+//libraries.
 const express = require('express')
 const router = express.Router()
+
+//data model and controllers
 const Task = require('../models/task')
 const controllerTask = require('../controllers/taskController')
+
+//routes
 router.get('/', controllerTask.lisTask)
 
 router.get('/:id', controllerTask.task)

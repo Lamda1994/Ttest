@@ -1,3 +1,6 @@
+//Answer in case you are not authenticated.
+
+//Importing mongoose for creation of the mongo data model.
 const mongoose = require('mongoose')
 const {Schema} = mongoose
 

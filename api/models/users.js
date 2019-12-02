@@ -1,3 +1,6 @@
+//Here is the data model or scheme for creating the tasks.
+
+//Importing mongoose for creation of the mongo data model.
 const mongoose = require('mongoose')
 const {Schema} = mongoose
 

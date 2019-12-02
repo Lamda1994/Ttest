@@ -20,9 +20,10 @@ const Login= (props)=>{
           }
         }
         catch (e) {
-          if(e.response.status = 500){
+          /*if(e.response.status = 500){
             props.history.push('/')
-          }
+          }*/
+          console.log(e)
         }
   }
 
@@ -50,12 +51,20 @@ const Login= (props)=>{
       )
       props.history.push('/task')
     } catch (err) {
-      console.log(err)
-      Swal.fire({
-        icon:'error',
-        title:'Hubo un error',
-        text:err.response.data.msj
-      })
+      //console.log(err)
+      if(err.response){
+        Swal.fire({
+          icon:'error',
+          title:'Hubo un error',
+          text:err.response.data.msj
+        })
+      }else{
+        Swal.fire({
+          icon:'error',
+          title:'Hubo un error',
+          text:'Hubo un error'
+        })
+      }
     }
   }
 
@@ -70,21 +79,21 @@ const Login= (props)=>{
   return(
     <Fragment>
     <div className="login">
-         <h2>Iniciar Sesión</h2>
+         <h2>Login</h2>
 
          <div className="contenedor-formulario">
              <form onSubmit={LoginUser}>
                  <div className="campo">
                      <label>Email</label>
-                     <input type="text" name="email" placeholder="Email para Iniciar Sesión" required onChange={ReadData}/>
+                     <input type="text" name="email" placeholder="Insert your email" required onChange={ReadData}/>
                  </div>
 
                  <div className="campo">
                      <label>Password</label>
-                     <input type="password" name="password" placeholder="Password para Iniciar Sesión" required onChange={ReadData}/>
+                     <input type="password" name="password" placeholder="Insert your password" required onChange={ReadData}/>
                  </div>
 
-                 <input type="submit" value="Iniciar Sesión" className="btn btn-verde btn-block" />
+                 <input type="submit" value="Enter" className="btn btn-verde btn-block" />
              </form>
          </div>
      </div>

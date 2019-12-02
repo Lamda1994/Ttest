@@ -40,6 +40,17 @@ const Task =({task})=>{
       }
     })
   }
+
+  const unassignTask = id=>{
+      Axios.put(`/api/task/unassign/${id}`)
+      .then(res =>{
+        Swal.fire(
+          'Deallocated!',
+          'The user has been deallocated.',
+          'success'
+        )
+      })
+  }
   let n="Unassigned"
   return(
     <tr>
@@ -54,10 +65,17 @@ const Task =({task})=>{
         <a onClick={()=>removeTask(task._id)} style={{cursor:"pointer"}}>
             <i className="fas fa-trash-alt fa-2x"></i>
         </a>
-        <Link to={`/task/assign/${task._id}`} >
-            <i className="fas fa-plus-square fa-2x"></i>
-
-        </Link>
+        {
+          task.assigned ? (
+            <a onClick={()=>unassignTask(task._id)} style={{cursor:"pointer"}}>
+                  <i className="fas fa-minus-square fa-2x"></i>
+            </a>
+          ) : (
+            <Link to={`/task/assign/${task._id}`}>
+                  <i className="fas fa-plus-square fa-2x"></i>
+            </Link>
+          )
+        }
       </td>
     </tr>
   )

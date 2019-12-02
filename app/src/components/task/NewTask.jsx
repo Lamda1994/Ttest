@@ -8,8 +8,7 @@ const NewTask =({history})=>{
 
   const [task, saveTask] = useState({
     title:'',
-    description:'',
-    user:''
+    description:''
   })
   const [users, saveUser] = useState([])
   const [auth, saveAuth] = useContext(CRMContext)
@@ -46,7 +45,7 @@ const NewTask =({history})=>{
 
   const validateForm = ()=>{
     const {title, description, user} = task
-    let validate = !title.length || !description.length || !user.length
+    let validate = !title.length || !description.length
     return validate
   }
 
@@ -72,17 +71,6 @@ const NewTask =({history})=>{
           <div className="campo">
               <label>Title:</label>
               <input type="text" placeholder="Insert a title for the task" name="title" onChange={loadState}/>
-          </div>
-          <div className="campo">
-          <label>User:</label>
-            <select name="user" onChange={loadState} onLoad={loadState}>
-                <option value="unassign">Select...</option>
-                {
-                  users.map(user=>(
-                    <option key={user._id} value={user._id}>{user.name}</option>
-                  ))
-                }
-            </select>
           </div>
           <div className="campo">
               <label>Description:</label>

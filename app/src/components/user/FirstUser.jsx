@@ -38,8 +38,8 @@ const FirstUser =({history})=>{
         'The new user was saved successfully!',
         'success'
       )
+      })
       history.push('/')
-    })
   }
 
   return(
@@ -48,7 +48,7 @@ const FirstUser =({history})=>{
       <form onSubmit={addUser}>
           <div className="campo">
               <label>Id:</label>
-              <input type="text" placeholder="Enter your identification number." name="id" onChange={loadState}/>
+              <input type="number" placeholder="Enter your identification number." name="id" onChange={loadState}/>
           </div>
 
           <div className="campo">
